@@ -5,9 +5,11 @@
         <title>Drawing Board</title>
         <style>
             html,body{ margin: 0; }
+            h3{border-bottom: 2px solid tomato; text-align: center; text-transform: capitalize;}
         </style>
     </head>
     <body>
+        <h3>Hold down your mouse and DRAW</h3>
         <canvas id="draw" height="500" width="500"></canvas>
 
         <script>
@@ -20,7 +22,7 @@
          context.strokeStyle = '#bada55';
          context.lineJoin = 'round';
          context.lineGap = 'round';
-         context.lineWidth = 10;
+         context.lineWidth = 50;
 
          let isDrawing = false;
          let lastX = 0;
