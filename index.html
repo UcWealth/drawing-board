@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Drawing Board</title>
+        <style>
+            html,body{ margin: 0; }
+        </style>
+    </head>
+    <body>
+        <canvas id="draw" height="500" width="500"></canvas>
+
+        <script>
+         const canvas = document.querySelector('#draw');
+         const context = canvas.getContext('2d');
+
+         canvas.width = window.innerWidth;
+         canvas.height = window.innerHeight;
+
+         context.strokeStyle = '#bada55';
+         context.lineJoin = 'round';
+         context.lineGap = 'round';
+         context.lineWidth = 10;
+
+         let isDrawing = false;
+         let lastX = 0;
+         let lastY = 0;
+         let hue = 0;
+
+         function draw(e){
+             if(!isDrawing) return;
+             console.log(e);
+             context.beginPath();
+             // start from
+             context.moveTo(lastX, lastY);
+             // go to 
+             context.lineTo(e.offsetX, e.offsetY);
+             context.stroke();
+             [lastX, lastY] = [e.offsetX, e.offsetY];
+         }
+
+         window.addEventListener('mousemove', draw);
+         window.addEventListener('mousedown', (e) => {
+            isDrawing = true;
+            [lastX, lastY] = [e.offsetX, e.offsetY];
+         });
+         window.addEventListener('mouseup', () => isDrawing = false);
+         window.addEventListener('mouseout', () => isDrawing = false);
+
+        </script>
+    </body>
+</html>
